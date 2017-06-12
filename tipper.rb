@@ -16,10 +16,10 @@ post "/tip" do
     command.perform
     json command.result
   rescue Exception => ex
-    json text: "error: #{ex.message}", icon_emoji: ":japanese_goblin:"
+    json text: "Error: #{ex.message}", icon_emoji: ":large_blue_circle:"
   end
 end
 
 get "/" do
-  "it works!"
+  "Reddbot Online."
 end
