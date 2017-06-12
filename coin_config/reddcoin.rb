@@ -17,7 +17,7 @@ module Reddcoin
   NETWORKINFO_ICON = ':bar_chart:'
   TOO_POOR_TEXT = 'Insafficent funds.'
   NO_PURPOSE_LOWER_BOUND_TEXT = 'You call that a tip?'
-  NO_PURPOSE_LOWER_BOUND = 0.9
+  NO_PURPOSE_LOWER_BOUND = 0.1
   RANDOMIZED_EMOJI = ':reddcoin:'
   NETWORK = 'reddcoin'
 end
