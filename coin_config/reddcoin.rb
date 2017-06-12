@@ -2,9 +2,9 @@ module Reddcoin
   PERFORM_ERROR = 'Invalid crypto command.'
   BALANCE_REPLY_PRETEXT = 'Your current balance is: '
   CURRENCY_ICON = ' RDD'
-  WEALTHY_UPPER_BOUND = 10000
+  WEALTHY_UPPER_BOUND = 1000
   WEALTHY_UPPER_BOUND_POSTTEXT = ' Are you a dev?!'
-  WEALTHY_UPPER_BOUND_EMOJI = ':moneybag:'
+  WEALTHY_UPPER_BOUND_EMOJI = ' :moneybag: :reddcoin: :moneybag:'
   BALANCE_REPLY_POSTTEXT = ' :reddcoin:'
   DEPOSIT_PRETEXT = 'Enter an integer for deposit'
   DEPOSIT_POSTTEXT = 'this is your depositing address'
