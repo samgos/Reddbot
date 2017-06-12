@@ -11,7 +11,7 @@ module Reddcoin
   TIP_ERROR_TEXT = 'Please say tip @username amount'
   TIP_PRETEXT = 'Give a little to get a little, they do say?'
   TIP_POSTTEXT1 = 'https://live.reddcoin.com/'
-  TIP_POSTTEXT2 = '| Reddcoin block explorer.'
+  TIP_POSTTEXT2 = '| Reddsight - Block Explorer.'
   WITHDRAW_TEXT = 'Tired of being the charitable type!?'
   WITHDRAW_ICON = ':reddcoin:'
   NETWORKINFO_ICON = ':bar_chart:'
