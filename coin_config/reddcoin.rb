@@ -5,7 +5,7 @@ module Reddcoin
   WEALTHY_UPPER_BOUND = 10000
   WEALTHY_UPPER_BOUND_POSTTEXT = ' Are you a dev?!'
   WEALTHY_UPPER_BOUND_EMOJI = ':moneybag:'
-  BALANCE_REPLY_POSTTEXT = '  :reddcoin:'
+  BALANCE_REPLY_POSTTEXT = ' :reddcoin:'
   DEPOSIT_PRETEXT = 'Enter an integer for deposit'
   DEPOSIT_POSTTEXT = 'this is your depositing address'
   TIP_ERROR_TEXT = 'Please say tip @username amount'
