@@ -15,7 +15,7 @@ module Reddcoin
   WITHDRAW_TEXT = 'Tired of being the charitable type!?'
   WITHDRAW_ICON = ':reddcoin:'
   NETWORKINFO_ICON = ':bar_chart:'
-  TOO_POOR_TEXT = 'Insafficent funds.'
+  TOO_POOR_TEXT = 'Insufficient funds.'
   NO_PURPOSE_LOWER_BOUND_TEXT = 'You call that a tip?'
   NO_PURPOSE_LOWER_BOUND = 0.1
   RANDOMIZED_EMOJI = ':reddcoin:'
