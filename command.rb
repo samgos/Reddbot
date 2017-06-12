@@ -56,15 +56,15 @@ class Command
       fallback:"<@#{@user_id}> => <@#{target_user}> #{@amount}Ð",
       color: "good",
       fields: [{
-        title: "such tipping #{@amount}Ð wow!",
-        value: "http://dogechain.info/tx/#{tx}",
+        title: "Tipping initiated of #{@amount} RRD :reddcoin:",
+        value: "http://live.reddcoin.com/tx/#{tx}",
         short: false
       },{
-        title: "generous shibe",
+        title: "Tipper",
         value: "<@#{@user_id}>",
         short: true
       },{
-        title: "lucky shibe",
+        title: "Recipient",
         value: "<@#{target_user}>",
         short: true
       }]
@@ -73,7 +73,7 @@ class Command
     @result[:text] += " (<#{@coin_config_module::TIP_POSTTEXT1}#{tx}#{@coin_config_module::TIP_POSTTEXT2}>)"
   end
 
-  alias :":dogecoin:" :tip
+  alias :":reddcoin:" :tip
 
   def withdraw
     address = @params.shift
