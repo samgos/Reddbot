@@ -2,7 +2,7 @@ module Bitcoin
   class Client
     def self.local
       return Bitcoin::Client.new(ENV['RPC_USER'], ENV['RPC_PASSWORD'],
-        { host: '127.0.0.1', port: 45443, ssl: false} )
+        { host: 'Host IP', port: 45443, ssl: false} )
     end
   end
 end
