@@ -3,7 +3,7 @@ Dir['./coin_config/*.rb'].each {|file| require file }
 require './bitcoin_client_extensions.rb'
 class Command
   attr_accessor :result, :action, :user_name, :icon_emoji
-  ACTIONS = %w(balance deposit tip withdraw networkinfo commands price)
+  ACTIONS = %w(balance deposit tip withdraw networkinfo price commands)
   def initialize(slack_params)
     @coin_config_module = Kernel.const_get ENV['COIN'].capitalize
     text = slack_params['text']
@@ -120,12 +120,16 @@ class Command
       @address = client.getnewaddress(user_id)
     end
   end
+  
+ def price
 
+  @result[:text] = @coin_config_module::PRICE_PRE
+  @result[:text] += @coin_config_module::PRICE
+end
+  
   def commands
     
     @result[:text] = "#{ACTIONS.join(', ' )}"
   end
-  def price
-    exec("./price.sh")
-  end
+  
 end
