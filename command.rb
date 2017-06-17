@@ -121,10 +121,13 @@ class Command
     end
   end
   
- def price
+def price
+ 
+  @result[:text] = @coin_config_module::PRICE_PRE + @coin_config_module::PRICE
+end
+  def help
 
-  @result[:text] = @coin_config_module::PRICE_PRE
-  @result[:text] += @coin_config_module::PRICE
+@result[:text] = @coin_config_module::HELP
 end
   
   def commands
