@@ -18,6 +18,7 @@ module Reddcoin
   TOO_POOR_TEXT = 'Insufficient funds.'
   PRICE = `./price.sh`
   PRICE_PRE = 'The current price of Reddcoin is: '
+  HELP= 'Commands are used by saying reddbot and one of the following: deposit, balance, tip, withdraw or price.'
   NO_PURPOSE_LOWER_BOUND_TEXT = 'You call that a tip?'
   NO_PURPOSE_LOWER_BOUND = 0.1
   RANDOMIZED_EMOJI = ':reddcoin:'
