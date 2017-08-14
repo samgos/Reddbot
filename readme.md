@@ -67,9 +67,27 @@ For this example I'm using reddcoin but the instructions should be similar for m
   * `make && make install && cd .. && rm -rf miniupnpc-1.8 download.php\?file\=miniupnpc-1.8.tar.gz`
 * Download the source code
   * `git clone https://github.com/reddcoin-project/reddcoin`
+  * `sudo apt-get build-essential
+sudo apt-get install build-essential
+sudo apt-get install libtool autotools-dev autoconf
+sudo apt-get install libssl-dev
+sudo apt-get install libboost-all-dev
+sudo add-apt-repository ppa:bitcoin/bitcoin
+sudo apt-get update
+sudo apt-get install db4.8
+sudo apt-get install libdb4.8-dev
+sudo apt-get install libdb4.8++-dev
+sudo apt-get install libminiupnpc-dev
+sudo apt-get install libqt4-dev libprotobuf-dev protobuf-compiler
+sudo apt-get install libqrencode-dev
+`
+
 * Compile reddcoind
   * `cd reddcoin/src`
-  * `make -f makefile.unix USE_UPNP=1 USE_QRCODE=1 USE_IPV6=1`
+  * `./configure`
+    * `./autogen.sh`
+    * `make`
+     * `make install`
   * `strip reddcoind`
 * Add a user and move reddcoind
   * `adduser reddcoin && usermod -g users reddcoin && delgroup reddcoin && chmod 0701 /home/reddcoin`
