@@ -1,7 +1,7 @@
 var capcon = require('capture-console');
 var WebClient = require('@slack/client').WebClient;
 
-var token = process.env.SLACK_API_TOKEN || 'xoxp-118272057075-185599438789-212684452592-b5cfaff2b7d0a2924b2f19a9561466a2' ;
+var token = process.env.SLACK_API_TOKEN || 'API_KEY' ;
 
 var web = new WebClient(token)
 var RtmClient = require('@slack/client').RtmClient;
