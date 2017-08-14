@@ -1,6 +1,6 @@
 # Slack Tipbot
 
-#### coin-agnostic crypto Tipbot for [Slack](https://slack.com)
+#### Reddcoin crypto currency tipbot for [Slack](https://slack.com)
 
 ## Setup
 
@@ -40,13 +40,13 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
   * `ns3.digitalocean.com`
 * In digitalocean's `DNS` section set an `A-Record` for your `hostname` from your previous step
   * Make the `hostname` be the name of your app
-    * `foocointipper`
+    * `reddbot`
   * Make the IP address be the one provided by digitalocean for your droplet.
 * After the DNS propogates
   * In the `Zone file` of the DNS section of digital ocean you'll see:
     * `foocointipper	 IN A	143.143.243.143`
-  * `ping foocointipper.example.com`
-    * `PING foocointipper.example.com (143.143.243.143): 56 data bytes`
+  * `ping reddbot.example.com`
+    * `PING reddbot.example.com (143.143.243.143): 56 data bytes`
 
 #### SSH into your new virualized box
 
@@ -56,9 +56,9 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
     * `sudo nano /etc/ssh/sshd_config`
       * `PermitRootLogin without-password`
 
-#### Compile your coin
+#### Compile reddcoind
 
-For this example I'm using litecoin but the instructions should be similar for most other coins.
+For this example I'm using reddcoin but the instructions should be similar for most other coins.
 
 * Update and install dependencies
   * `apt-get update && apt-get upgrade`
@@ -66,41 +66,41 @@ For this example I'm using litecoin but the instructions should be similar for m
   * `wget http://miniupnp.free.fr/files/download.php?file=miniupnpc-1.8.tar.gz && tar -zxf download.php\?file\=miniupnpc-1.8.tar.gz && cd miniupnpc-1.8/`
   * `make && make install && cd .. && rm -rf miniupnpc-1.8 download.php\?file\=miniupnpc-1.8.tar.gz`
 * Download the source code
-  * `git clone https://github.com/litecoin-project/litecoin`
-* Compile litecoind
-  * `cd litecoin/src`
+  * `git clone https://github.com/reddcoin-project/reddcoin`
+* Compile reddcoind
+  * `cd reddcoin/src`
   * `make -f makefile.unix USE_UPNP=1 USE_QRCODE=1 USE_IPV6=1`
-  * `strip litecoind`
-* Add a user and move litecoind
-  * `adduser litecoin && usermod -g users litecoin && delgroup litecoin && chmod 0701 /home/litecoin`
-  * `mkdir /home/litecoin/bin`
-  * `cp ~/litecoin/src/litecoind /home/litecoin/bin/litecoind`
-  * `chown -R litecoin:users /home/litecoin/bin`
-  * `cd && rm -rf litecoin`
+  * `strip reddcoind`
+* Add a user and move reddcoind
+  * `adduser reddcoin && usermod -g users reddcoin && delgroup reddcoin && chmod 0701 /home/reddcoin`
+  * `mkdir /home/reddcoin/bin`
+  * `cp ~/reddcoin/src/reddcoind /home/reddcoin/bin/reddcoin`
+  * `chown -R reddcoin:users /home/reddcoin/bin`
+  * `cd && rm -rf reddcoin`
 * Run the daemon
-  * `su litecoin`
-  * `cd && bin/litecoind`    
-  * On the first run, litecoind will return an error and tell you to make a configuration file, named litecoin.conf, in order to add a username and password to the file.
-    * `nano ~/.litecoin/litecoin.conf && chmod 0600 ~/.litecoin/litecoin.conf`
+  * `su reddcoin`
+  * `cd && bin/reddcoin`    
+  * On the first run, reddcoin will return an error and tell you to make a configuration file, named reddcoin.conf, in order to add a username and password to the file.
+    * `nano ~/.reddcoin/reddcoin.conf && chmod 0600 ~/.reddcoin/reddcoin.conf`
     * Add the following to your config file, changing the username and password
     * to something secure. Make sure to take note of the `rpcuser` and * `rpcpassword` because you'll need them in a couple of steps
       * `daemon=1`
-      * `rpcuser=litecoinrpc`
-      * `rpcpassword=f0000b4444r`
-      * `port=9333`
+      * `rpcuser=reddrpc`
+      * `rpcpassword=Z01BBDFKF`
+      * `port=45443`
       * `rpcport=8332`
       * `rpcthreads=100`
       * `irc=0`
       * `dnsseed=1`
   * Run the daemon again
-    * `cd && bin/litecoind` 
+    * `cd && bin/reddcoind` 
   * To confirm that the daemon is running
-    * `cd && bin/litecoind getinfo`
+    * `cd && bin/reddcoind getinfo`
   * Now wait for the blockchain to sync
 
-#### Clone the CoinTipper Bot git repo
+#### Clone the Reddbot Bot git repo
 
-* `git clone https://github.com/cgcardona/slack_tipbot.git`
+* `git clone https://github.com/samgos/reddbot`
 * Install bundler
   * `apt-get install bundler`
 * Install Ruby 2.1.1 and rvm
@@ -112,52 +112,14 @@ For this example I'm using litecoin but the instructions should be similar for m
 
 * https://yoursite.slack.com/services/new/outgoing-webhook
 * Write down the api token they show you in this page
-* Set the trigger word. For the litecoin example above we use `litecointipper`
+* Set the trigger word, use `reddbot`
 * Set the Url to the server you'll be deploying on http://example.com:4567/tip
 
-#### Give your bot some attitude!
-
-* Copy `coin_config/litecoin.rb` to a file in `coin_config/` and name it after your coin. 
-* Open your newly copied file and change the name of the `module` to the same name as your coin. 
-* This file contains all the snippets of text, emojis, and variables needed to customize your bot's behavior and attitude 
 
 #### Launch the server!
 
-* `RPC_USER=litecoinrpc RPC_PASSWORD=your_pass SLACK_API_TOKEN=your_api_key COIN=litecoin bundle exec ruby tipper.rb -p 4567`
+* `RPC_USER=reddrpc RPC_PASSWORD=your_pass SLACK_API_TOKEN=your_api_key COIN=reddcoin bundle exec ruby tipper.rb -p 4567`
   
-## Commands
-
-* Tip - send someone coins
-
-  `litecointipper tip @somebody 100`
-
-* Deposit - put coin in
-
-  `litecointipper deposit`
-
-* Withdraw - take coin out
-
-  `litecointipper withdraw LKzHM7rUB2sP1dgVskVFfdSoysnojuw2pX 100`
-
-* Balance - find out how much is in your wallet
-
-  `litecointipper balance`
-
-* Networkinfo - Get the output of getinfo.  Note:  this will disclose the entire aggregate balance of the hot wallet to everyone in the chat
-
-  `litecointipper networkinfo`
-
-## Tested coins
-
-This has been tested w/ 
-
-* btc
-* ltc
-* florincoin
-* doge
-* zeta
-
-Please let me know when you try it with other coins so that I can update the list. 
 
 ## Security
 
@@ -167,8 +129,3 @@ This runs an unencrypted hot wallet on your server. You should not store signifi
 
 This project was originally forked from [dogetip-slack](https://github.com/tenforwardconsulting/dogetip-slack) by [tenforwardconsulting](https://github.com/tenforwardconsulting)
 
-## Support
-
-Like what you see or using this with your team? You can support [the developer](https://github.com/cgcardona) with bitcoin at `1Jwdn9NjhPHkUiEg4gHNaTrYe6s9RkXTs1`
-
-Further the developer is a founding member of the [Blockchain Technology Group](http://blocktech.co) that currently is developing open-source software, hardware and altcoins in the crypto-currency space.  If you would like to support BlockTech, you may donate at `1PYNQ3iUSRrzJjEB2FniGruLaz11vMuPmo`.
