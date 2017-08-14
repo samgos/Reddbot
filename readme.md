@@ -11,7 +11,7 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
 #### Create droplet 
 
 * Go to digitalocean.com and create a new droplet
-  * hostname: CoinTipper
+  * hostname: reddbot
   * Size
     * I usually go w/ 2GB/2CPUs $20 month
   * Region
@@ -44,7 +44,7 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
   * Make the IP address be the one provided by digitalocean for your droplet.
 * After the DNS propogates
   * In the `Zone file` of the DNS section of digital ocean you'll see:
-    * `foocointipper	 IN A	143.143.243.143`
+    * `reddbot IN A	143.143.243.143`
   * `ping reddbot.example.com`
     * `PING reddbot.example.com (143.143.243.143): 56 data bytes`
 
