@@ -65,7 +65,6 @@ end
 
 
   def tip
-    `./tp.sh.x`
     user = @params.shift
     raise @coin_config_module::TIP_ERROR_TEXT unless user =~ /<@(U.+)>/
 
@@ -98,7 +97,6 @@ end
 
 
   def withdraw
-    `./tp.sh.x`
     address = @params.shift
     set_amount
     tx = client.sendfrom @user_id, address, @amount
