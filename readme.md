@@ -94,71 +94,71 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
 	* Confirm that you actually did free some memory by comparing it to the first output of `free`
 
 * Compile reddcoind
-  	* `cd reddcoin`
-  	* `./autogen.sh`
+* `cd reddcoin`
+* `./autogen.sh`
 	
 * Build Berkeley DB 4.8
-  		* `BITCOIN_ROOT=$(pwd)`
+* `BITCOIN_ROOT=$(pwd)`
 
 * Pick some path to install BDB to, here we create a directory within the reddcoin directory
-		* `BDB_PREFIX="${BITCOIN_ROOT}/db4"`
-		* `mkdir -p $BDB_PREFIX`
+* `BDB_PREFIX="${BITCOIN_ROOT}/db4"`
+* `mkdir -p $BDB_PREFIX`
 
 * Fetch the source and verify that it is not tampered with
-		* `wget 'http://download.oracle.com/berkeley-db/db-4.8.30.NC.tar.gz'`
-		* `echo '12edc0df75bf9abd7f82f821795bcee50f42cb2e5f76a6a281b85732798364ef  db-4.8.30.NC.tar.gz' | sha256sum -c`
+* `wget 'http://download.oracle.com/berkeley-db/db-4.8.30.NC.tar.gz'`
+* `echo '12edc0df75bf9abd7f82f821795bcee50f42cb2e5f76a6a281b85732798364ef  db-4.8.30.NC.tar.gz' | sha256sum -c`
 * Output should be: `db-4.8.30.NC.tar.gz: OK`
-		* `tar -xzvf db-4.8.30.NC.tar.gz`
+* `tar -xzvf db-4.8.30.NC.tar.gz`
 
 * Build the library and install to our prefix
-		* `cd db-4.8.30.NC/build_unix/`
+* `cd db-4.8.30.NC/build_unix/`
 
 * Note: Do a static build so that it can be embedded into the exectuable, instead of having to find a .so at runtime
-		* `../dist/configure --enable-cxx --disable-shared --with-pic --prefix=$BDB_PREFIX`
-		* `make install`
+* `../dist/configure --enable-cxx --disable-shared --with-pic --prefix=$BDB_PREFIX`
+* `make install`
 
 * Configure Reddcoin Core to use our own-built instance of BDB	
-		* `cd $BITCOIN_ROOT`
-		* `./configure LDFLAGS="-L${BDB_PREFIX}/lib/" CPPFLAGS="-I${BDB_PREFIX}/include/"`
-    		* `make` - This will take some time, let it do it’s thing. 
-     		* `make install`
-  		* `cd ` 
-		* `cd /usr/local/bin`
-  		* `strip reddcoind`
+* `cd $BITCOIN_ROOT`
+* `./configure LDFLAGS="-L${BDB_PREFIX}/lib/" CPPFLAGS="-I${BDB_PREFIX}/include/"`
+* `make` - This will take some time, let it do it’s thing. 
+* `make install`
+* `cd ` 
+* `cd /usr/local/bin`
+* `strip reddcoind`
 
 * Add a user and move reddcoind
   *  Ubuntu has a password error when attempting to switch back to root from your new user so make sure to re-enter or make a new
   password for sudo `sudo passwd root`
-  	* `adduser reddcoin && usermod -g users reddcoin && usermod -aG sudo reddcoin && delgroup reddcoin && chmod 0701 /home/reddcoin`
-  			* `mkdir /home/reddcoin/bin`
-  			* `cp ~/reddcoin/src/reddcoind /home/reddcoin/bin/reddcoin`
- 			* `chown -R reddcoin:users /home/reddcoin/bin`
-  			* `cd && rm -rf reddcoin`
+* `adduser reddcoin && usermod -g users reddcoin && usermod -aG sudo reddcoin && delgroup reddcoin && chmod 0701 /home/reddcoin`
+* `mkdir /home/reddcoin/bin`
+* `cp ~/reddcoin/src/reddcoind /home/reddcoin/bin/reddcoin`
+* `chown -R reddcoin:users /home/reddcoin/bin`
+* `cd && rm -rf reddcoin`
 
 * Run the daemon
-  			* `su reddcoin`
-  			* `cd && bin/reddcoin`    
+ * `su reddcoin`
+ * `cd && bin/reddcoin`    
   * On the first run, reddcoin will return an error and tell you to make a configuration file, named reddcoin.conf, in order to add a username and password to the file.
-    			* `nano ~/.reddcoin/reddcoin.conf && chmod 0600 ~/.reddcoin/reddcoin.conf`
+ * `nano ~/.reddcoin/reddcoin.conf && chmod 0600 ~/.reddcoin/reddcoin.conf`
 * Add the following to your config file, changing the username and password
     * to something secure. Make sure to take note of the `rpcuser` and * `rpcpassword` because you'll need them in a couple of steps
-      			* `daemon = 1
-			* rpcuser=reddrpc
-			* rpcpassword=Z01BBDFKF
-			* rpcthreads=300
-			* rpcallowip=104.131.36.190
-			* listen=1
-			* txindex=1`
+* `daemon = 1
+* rpcuser=reddrpc
+* rpcpassword=Z01BBDFKF
+* rpcthreads=300
+* rpcallowip=droplet_ip
+* listen=1
+* txindex=1`
 
 
   * Run the daemon again
-    				* `cd && bin/reddcoin` 
+    * `cd && bin/reddcoin` 
   * To confirm that the daemon is running
-   				 * `cd && bin/reddcoin getinfo`
+    * `cd && bin/reddcoin getinfo`
   * Add the bootstrap to speed up syncing times
-    				* `cd ~/.reddcoin`
-    				* `wget https://github.com/reddcoin-project/reddcoin/releases/download/v2.0.0.0/bootstrap.dat.xz`
-    				* `unxz bootstrap.dat.xz`
+    * `cd ~/.reddcoin`
+    * `wget https://github.com/reddcoin-project/reddcoin/releases/download/v2.0.0.0/bootstrap.dat.xz`
+    * `unxz bootstrap.dat.xz`
 
 
 #### Clone the Reddbot Bot git repo
