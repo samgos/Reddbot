@@ -143,12 +143,12 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
 * Add the following to your config file, changing the username and password
     * to something secure. Make sure to take note of the `rpcuser` and * `rpcpassword` because you'll need them in a couple of steps
 * `daemon = 1
-* rpcuser=reddrpc
-* rpcpassword=Z01BBDFKF
-* rpcthreads=300
-* rpcallowip=droplet_ip
-* listen=1
-* txindex=1`
+rpcuser=reddrpc
+rpcpassword=Z01BBDFKF
+rpcthreads=300
+rpcallowip=droplet_ip
+listen=1
+txindex=1`
 
 
   * Run the daemon again
