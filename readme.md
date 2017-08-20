@@ -1,4 +1,4 @@
-# Slack Tipbot
+# Reddbot - Slack Reddcoin Tipbot.
 
 #### Reddcoin crypto currency tipbot for [Slack](https://slack.com)
 
@@ -13,14 +13,13 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
 * Go to digitalocean.com and create a new droplet
   * hostname: reddbot
   * Size
-    * I usually go w/ 2GB/2CPUs $20 month
+    * Pick either w/ 2GB/2CPUs $20 a month or w/ 1GB/1CPUs $10 a month.
   * Region
-    * San Francisco
-  * Linux Distributions
-    * Ubuntu 14.04 x64
-  * Applications
-    * Dokku
+    * San Francisco 
+  * One-click Apps
+    * Dokku 0.94 on 16.04
   * Add SSH keys
+    * Digital Ocean provide a easy-following tutorial for this that can be accessed once you click on add SSH key’s option, you’ll see a html link above the input console there a link for How to use SSH keys. 
 
 #### Configure hostname
 
@@ -50,51 +49,89 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
 
 #### SSH into your new virualized box
 
-* `ssh root@ip.address.of.virutalized.box`
+* `ssh -o "IdentitiesOnly yes" -i ~/location/id_rsa root@droplet-ip` or `ssh root@droplet-ip`
   * If you correctly added your SSH keys you'll get signed in
   * Remove root login w/ password
     * `sudo nano /etc/ssh/sshd_config`
       * `PermitRootLogin without-password`
+	  * `PasswordAuthentication yes`
 
 #### Compile reddcoind
 
-For this example I'm using reddcoin but the instructions should be similar for most other coins.
-
-* Update and install dependencies
-  * `apt-get update && apt-get upgrade`
-  * `apt-get install ntp git build-essential libssl-dev libdb-dev libdb++-dev libboost-all-dev libqrencode-dev`
-  * `wget http://miniupnp.free.fr/files/download.php?file=miniupnpc-1.8.tar.gz && tar -zxf download.php\?file\=miniupnpc-1.8.tar.gz && cd miniupnpc-1.8/`
-  * `make && make install && cd .. && rm -rf miniupnpc-1.8 download.php\?file\=miniupnpc-1.8.tar.gz`
 * Download the source code
   * `git clone https://github.com/reddcoin-project/reddcoin`
-  * `sudo apt-get build-essential
-sudo apt-get install build-essential
-sudo apt-get install libtool autotools-dev autoconf
-sudo apt-get install libssl-dev
-sudo apt-get install libboost-all-dev
-sudo add-apt-repository ppa:bitcoin/bitcoin
-sudo apt-get update
-sudo apt-get install db4.8
-sudo apt-get install libdb4.8-dev
-sudo apt-get install libdb4.8++-dev
-sudo apt-get install libminiupnpc-dev
-sudo apt-get install libqt4-dev libprotobuf-dev protobuf-compiler
-sudo apt-get install libqrencode-dev
-`
+
+* Install Dependencies 
+* ` wget https://launchpad.net/ubuntu/+archive/primary/+files/miniupnpc_1.9.20140610.orig.tar.gz 
+ * `tar xzvf miniupnpc_1.9.20140610.orig.tar.gz`
+  * `make && make install`
+
+  * `sudo apt-get install build-essential`
+* `sudo apt-get install libtool autotools-dev autoconf`
+* `sudo apt-get install libssl-dev`
+* `sudo apt-get install libboost-all-dev`
+* `sudo add-apt-repository ppa:bitcoin/bitcoin`
+* `sudo apt-get update`
+* `sudo apt-get install libdb4.8`
+* `sudo apt-get install libdb4.8-dev`
+* `sudo apt-get install libdb4.8++-dev`
+* `sudo apt-get install libminiupnpc-dev`
+* `sudo apt-get install libqt4-dev libprotobuf-dev protobuf-compiler`
+* `sudo apt-get install libqrencode-dev`
+* `sudo apt-get install libqt5gui5`
+* `sudo apt-get install libqt5core5a`
+* `sudo apt-get install libqt5dbus5`
+* `sudo apt-get install qttools5-dev`
+* `sudo apt-get install qttools5-dev-tools`
+* `sudo apt-get install libprotobuf-dev`
+* `sudo apt-get update && sudo apt-get install pkg-config`
+
+* Note if you are using a 10$ Droplet with 1GB ram you will need accommodate for more memory usage.
+ * `free
+dd if=/dev/zero of=/var/swap.img bs=1024k count=1000
+mkswap /var/swap.img
+swapon /var/swap.img
+free`
 
 * Compile reddcoind
-  * `cd reddcoin/src`
-  * `./configure`
-    * `./autogen.sh`
-    * `make`
+  * `cd reddcoin`
+  * `./autogen.sh`
+* Build Berkeley DB 4.8
+  * `ITCOIN_ROOT=$(pwd)
+
+# Pick some path to install BDB to, here we create a directory within the reddcoin directory
+BDB_PREFIX="${BITCOIN_ROOT}/db4"
+mkdir -p $BDB_PREFIX
+
+# Fetch the source and verify that it is not tampered with
+wget 'http://download.oracle.com/berkeley-db/db-4.8.30.NC.tar.gz'
+echo '12edc0df75bf9abd7f82f821795bcee50f42cb2e5f76a6a281b85732798364ef  db-4.8.30.NC.tar.gz' | sha256sum -c
+# -> db-4.8.30.NC.tar.gz: OK
+tar -xzvf db-4.8.30.NC.tar.gz
+
+# Build the library and install to our prefix
+cd db-4.8.30.NC/build_unix/
+#  Note: Do a static build so that it can be embedded into the exectuable, instead of having to find a .so at runtime
+../dist/configure --enable-cxx --disable-shared --with-pic --prefix=$BDB_PREFIX
+make install
+
+# Configure Reddcoin Core to use our own-built instance of BDB
+cd $BITCOIN_ROOT
+./configure LDFLAGS="-L${BDB_PREFIX}/lib/" CPPFLAGS="-I${BDB_PREFIX}/include/"`
+    * `make` - This will take some time, let it do it’s thing. 
      * `make install`
+  * `cd ` 
+  * `cd /usr/local/bin`
   * `strip reddcoind`
+
 * Add a user and move reddcoind
-  * `adduser reddcoin && usermod -g users reddcoin && delgroup reddcoin && chmod 0701 /home/reddcoin`
+  *  Ubuntu has a password error when attempting to switch back to root from your new user so make sure to re-enter or make a new password for sudo `sudo passwd root`
+  * `adduser reddcoin && usermod -g users reddcoin && usermod -aG sudo reddcoin && delgroup reddcoin && chmod 0701 /home/reddcoin`
   * `mkdir /home/reddcoin/bin`
   * `cp ~/reddcoin/src/reddcoind /home/reddcoin/bin/reddcoin`
   * `chown -R reddcoin:users /home/reddcoin/bin`
   * `cd && rm -rf reddcoin`
+
 * Run the daemon
   * `su reddcoin`
   * `cd && bin/reddcoin`    
@@ -111,20 +148,43 @@ sudo apt-get install libqrencode-dev
       * `irc=0`
       * `dnsseed=1`
   * Run the daemon again
-    * `cd && bin/reddcoind` 
+    * `cd && bin/reddcoin` 
   * To confirm that the daemon is running
-    * `cd && bin/reddcoind getinfo`
-  * Now wait for the blockchain to sync
+    * `cd && bin/reddcoin getinfo`
+  * Add the bootstrap to speed up syncing times
+    * `cd ~/.reddcoin`
+    * `wget https://github.com/reddcoin-project/reddcoin/releases/download/v2.0.0.0/bootstrap.dat.xz`
+    * `unxz bootstrap.dat.xz`
+
 
 #### Clone the Reddbot Bot git repo
 
 * `git clone https://github.com/samgos/reddbot`
-* Install bundler
-  * `apt-get install bundler`
+* `cd reddbot`
+
 * Install Ruby 2.1.1 and rvm
-  * `\curl -sSL https://get.rvm.io | bash -s stable --ruby`
-  * To start using RVM you need to run `source /usr/local/rvm/scripts/rvm`
+ * `sudo apt-get install libgdbm-dev libncurses5-dev automake libtool bison libffi-dev`
+* `gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3`
+* `curl -sSL https://get.rvm.io | bash -s stable`
+* `rvm install ruby-2.1.1`
+* `rvm use 2.1.1 --default`
+* `ruby -v`
+
+* Install bundler
+* `gem install bundler`
+* `sudo apt install ruby-bundler`
+
+* To start using RVM you need to run `source rvm`
 * Run `bundle`
+
+* Parsing dependencies. 
+* `chmod +x disp.sh`
+* `sudo apt-get install html-xml-utils`
+
+* Install node.js and slack-sdk client.
+* `sudo apt install nodejs-legacy && sudo apt install npm && git clone https://github.com/slackapi/node-slack-sdk`
+* `cd node-slack-sdk && npm install @slack/client --save && npm install --save-dev capture-console `
+
 
 #### Set up the Slack integration: as an "outgoing webhook" 
 
