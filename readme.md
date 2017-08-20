@@ -87,21 +87,22 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
 * `sudo apt-get update && sudo apt-get install pkg-config`
 
 * Note if you are using a 10$ Droplet with 1GB ram you will need accommodate for more memory usage.
- * `free`
-* `dd if=/dev/zero of=/var/swap.img bs=1024k count=1000`
-* `mkswap /var/swap.img`
-* `wapon /var/swap.img`
-* Confirm that you actually did free some memory by comparing it to the first output of `free`
+	* `free`
+	* `dd if=/dev/zero of=/var/swap.img bs=1024k count=1000`
+	* `mkswap /var/swap.img`
+	* `wapon /var/swap.img`
+	* Confirm that you actually did free some memory by comparing it to the first output of `free`
 
 * Compile reddcoind
-  * `cd reddcoin`
-  * `./autogen.sh`
+  	* `cd reddcoin`
+  	* `./autogen.sh`
+	
 * Build Berkeley DB 4.8
   * `BITCOIN_ROOT=$(pwd)`
 
 * Pick some path to install BDB to, here we create a directory within the reddcoin directory
-*`BDB_PREFIX="${BITCOIN_ROOT}/db4"`
-*`mkdir -p $BDB_PREFIX`
+* `BDB_PREFIX="${BITCOIN_ROOT}/db4"`
+* `mkdir -p $BDB_PREFIX`
 
 * Fetch the source and verify that it is not tampered with
 * `wget 'http://download.oracle.com/berkeley-db/db-4.8.30.NC.tar.gz'`
@@ -109,15 +110,17 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
 * db-4.8.30.NC.tar.gz: OK
 * `tar -xzvf db-4.8.30.NC.tar.gz`
 
-*Build the library and install to our prefix
+* Build the library and install to our prefix
 * `cd db-4.8.30.NC/build_unix/`
+
 * Note: Do a static build so that it can be embedded into the exectuable, instead of having to find a .so at runtime
 * `../dist/configure --enable-cxx --disable-shared --with-pic --prefix=$BDB_PREFIX`
 * `make install`
 
-*Configure Reddcoin Core to use our own-built instance of BDB
-*`cd $BITCOIN_ROOT`
-*`./configure LDFLAGS="-L${BDB_PREFIX}/lib/" CPPFLAGS="-I${BDB_PREFIX}/include/"`
+* Configure Reddcoin Core to use our own-built instance of BDB
+* `cd $BITCOIN_ROOT`
+* `./configure LDFLAGS="-L${BDB_PREFIX}/lib/" CPPFLAGS="-I${BDB_PREFIX}/include/"`
+    
     * `make` - This will take some time, let it do it’s thing. 
      * `make install`
   * `cd ` 
