@@ -184,7 +184,7 @@ var attach =                    [{
                                              value:  "<@" + users[sixth].slice(0,11) + ">,<@" + users[seventh].slice(0,11) + ">,<@" + users[oct].slice(0,11) + ">",
                                              short: 'true'},
                                              {title: "Most Frequent Tippers",
-                                             value:  "<@" + users[location].slice(0,11) + ">,<@" + users[location2].slice(0,11) + ">,<@" + users[location3].slice(0,11$
+                                             value:  "<@" + users[location].slice(0,11) + ">,<@" + users[location2].slice(0,11) + ">,<@" + users[location3].slice(0,11) + "> ",
                                              short: 'true'}
                                         ],
                                    color: '#2BB24B'}]
