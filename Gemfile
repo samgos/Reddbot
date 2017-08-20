@@ -5,3 +5,5 @@ gem "sinatra"
 gem "sinatra-contrib"
 gem "bitcoin-client"
 gem "rspec"
+gem "nokogiri"
+
