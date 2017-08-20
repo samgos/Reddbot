@@ -66,25 +66,25 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
  * `tar xzvf miniupnpc_1.9.20140610.orig.tar.gz`
   * `make && make install`
 
-  * `sudo apt-get install build-essential`
-* `sudo apt-get install libtool autotools-dev autoconf`
-* `sudo apt-get install libssl-dev`
-* `sudo apt-get install libboost-all-dev`
-* `sudo add-apt-repository ppa:bitcoin/bitcoin`
-* `sudo apt-get update`
-* `sudo apt-get install libdb4.8`
-* `sudo apt-get install libdb4.8-dev`
-* `sudo apt-get install libdb4.8++-dev`
-* `sudo apt-get install libminiupnpc-dev`
-* `sudo apt-get install libqt4-dev libprotobuf-dev protobuf-compiler`
-* `sudo apt-get install libqrencode-dev`
-* `sudo apt-get install libqt5gui5`
-* `sudo apt-get install libqt5core5a`
-* `sudo apt-get install libqt5dbus5`
-* `sudo apt-get install qttools5-dev`
-* `sudo apt-get install qttools5-dev-tools`
-* `sudo apt-get install libprotobuf-dev`
-* `sudo apt-get update && sudo apt-get install pkg-config`
+ 	* `sudo apt-get install build-essential`
+	* `sudo apt-get install libtool autotools-dev autoconf`
+	* `sudo apt-get install libssl-dev`
+	* `sudo apt-get install libboost-all-dev`
+	* `sudo add-apt-repository ppa:bitcoin/bitcoin`
+	* `sudo apt-get update`
+	* `sudo apt-get install libdb4.8`
+	* `sudo apt-get install libdb4.8-dev`
+	* `sudo apt-get install libdb4.8++-dev`
+	* `sudo apt-get install libminiupnpc-dev`
+	* `sudo apt-get install libqt4-dev libprotobuf-dev protobuf-compiler`
+	* `sudo apt-get install libqrencode-dev`
+	* `sudo apt-get install libqt5gui5`
+	* `sudo apt-get install libqt5core5a`
+	* `sudo apt-get install libqt5dbus5`
+	* `sudo apt-get install qttools5-dev`
+	* `sudo apt-get install qttools5-dev-tools`
+	* `sudo apt-get install libprotobuf-dev`
+	* `sudo apt-get update && sudo apt-get install pkg-config`
 
 * Note if you are using a 10$ Droplet with 1GB ram you will need accommodate for more memory usage.
 	* `free`
@@ -98,67 +98,67 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
   	* `./autogen.sh`
 	
 * Build Berkeley DB 4.8
-  * `BITCOIN_ROOT=$(pwd)`
+  		* `BITCOIN_ROOT=$(pwd)`
 
 * Pick some path to install BDB to, here we create a directory within the reddcoin directory
-* `BDB_PREFIX="${BITCOIN_ROOT}/db4"`
-* `mkdir -p $BDB_PREFIX`
+		* `BDB_PREFIX="${BITCOIN_ROOT}/db4"`
+		* `mkdir -p $BDB_PREFIX`
 
 * Fetch the source and verify that it is not tampered with
-* `wget 'http://download.oracle.com/berkeley-db/db-4.8.30.NC.tar.gz'`
-* `echo '12edc0df75bf9abd7f82f821795bcee50f42cb2e5f76a6a281b85732798364ef  db-4.8.30.NC.tar.gz' | sha256sum -c`
-* db-4.8.30.NC.tar.gz: OK
-* `tar -xzvf db-4.8.30.NC.tar.gz`
+		* `wget 'http://download.oracle.com/berkeley-db/db-4.8.30.NC.tar.gz'`
+		* `echo '12edc0df75bf9abd7f82f821795bcee50f42cb2e5f76a6a281b85732798364ef  db-4.8.30.NC.tar.gz' | sha256sum -c`
+* Output should be: `db-4.8.30.NC.tar.gz: OK`
+		* `tar -xzvf db-4.8.30.NC.tar.gz`
 
 * Build the library and install to our prefix
-* `cd db-4.8.30.NC/build_unix/`
+		* `cd db-4.8.30.NC/build_unix/`
 
 * Note: Do a static build so that it can be embedded into the exectuable, instead of having to find a .so at runtime
-* `../dist/configure --enable-cxx --disable-shared --with-pic --prefix=$BDB_PREFIX`
-* `make install`
+		* `../dist/configure --enable-cxx --disable-shared --with-pic --prefix=$BDB_PREFIX`
+		* `make install`
 
-* Configure Reddcoin Core to use our own-built instance of BDB
-* `cd $BITCOIN_ROOT`
-* `./configure LDFLAGS="-L${BDB_PREFIX}/lib/" CPPFLAGS="-I${BDB_PREFIX}/include/"`
-    
-    * `make` - This will take some time, let it do it’s thing. 
-     * `make install`
-  * `cd ` 
-  * `cd /usr/local/bin`
-  * `strip reddcoind`
+* Configure Reddcoin Core to use our own-built instance of BDB	
+		* `cd $BITCOIN_ROOT`
+		* `./configure LDFLAGS="-L${BDB_PREFIX}/lib/" CPPFLAGS="-I${BDB_PREFIX}/include/"`
+    		* `make` - This will take some time, let it do it’s thing. 
+     		* `make install`
+  		* `cd ` 
+		* `cd /usr/local/bin`
+  		* `strip reddcoind`
 
 * Add a user and move reddcoind
   *  Ubuntu has a password error when attempting to switch back to root from your new user so make sure to re-enter or make a new
   password for sudo `sudo passwd root`
-  * `adduser reddcoin && usermod -g users reddcoin && usermod -aG sudo reddcoin && delgroup reddcoin && chmod 0701 /home/reddcoin`
-  * `mkdir /home/reddcoin/bin`
-  * `cp ~/reddcoin/src/reddcoind /home/reddcoin/bin/reddcoin`
-  * `chown -R reddcoin:users /home/reddcoin/bin`
-  * `cd && rm -rf reddcoin`
+  	* `adduser reddcoin && usermod -g users reddcoin && usermod -aG sudo reddcoin && delgroup reddcoin && chmod 0701 /home/reddcoin`
+  			* `mkdir /home/reddcoin/bin`
+  			* `cp ~/reddcoin/src/reddcoind /home/reddcoin/bin/reddcoin`
+ 			* `chown -R reddcoin:users /home/reddcoin/bin`
+  			* `cd && rm -rf reddcoin`
 
 * Run the daemon
-  * `su reddcoin`
-  * `cd && bin/reddcoin`    
+  			* `su reddcoin`
+  			* `cd && bin/reddcoin`    
   * On the first run, reddcoin will return an error and tell you to make a configuration file, named reddcoin.conf, in order to add a username and password to the file.
-    * `nano ~/.reddcoin/reddcoin.conf && chmod 0600 ~/.reddcoin/reddcoin.conf`
-    * Add the following to your config file, changing the username and password
+    			* `nano ~/.reddcoin/reddcoin.conf && chmod 0600 ~/.reddcoin/reddcoin.conf`
+* Add the following to your config file, changing the username and password
     * to something secure. Make sure to take note of the `rpcuser` and * `rpcpassword` because you'll need them in a couple of steps
-      * `daemon=1`
-      * `rpcuser=reddrpc`
-      * `rpcpassword=Z01BBDFKF`
-      * `port=45443`
-      * `rpcport=8332`
-      * `rpcthreads=100`
-      * `irc=0`
-      * `dnsseed=1`
+      			* `daemon = 1
+			* rpcuser=reddrpc
+			* rpcpassword=Z01BBDFKF
+			* rpcthreads=300
+			* rpcallowip=104.131.36.190
+			* listen=1
+			* txindex=1`
+
+
   * Run the daemon again
-    * `cd && bin/reddcoin` 
+    				* `cd && bin/reddcoin` 
   * To confirm that the daemon is running
-    * `cd && bin/reddcoin getinfo`
+   				 * `cd && bin/reddcoin getinfo`
   * Add the bootstrap to speed up syncing times
-    * `cd ~/.reddcoin`
-    * `wget https://github.com/reddcoin-project/reddcoin/releases/download/v2.0.0.0/bootstrap.dat.xz`
-    * `unxz bootstrap.dat.xz`
+    				* `cd ~/.reddcoin`
+    				* `wget https://github.com/reddcoin-project/reddcoin/releases/download/v2.0.0.0/bootstrap.dat.xz`
+    				* `unxz bootstrap.dat.xz`
 
 
 #### Clone the Reddbot Bot git repo
