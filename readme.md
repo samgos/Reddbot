@@ -52,13 +52,14 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
 
 * `ssh -o "IdentitiesOnly yes" -i ~/location/id_rsa root@droplet-ip` or `ssh root@droplet-ip`
   * If you correctly added your SSH keys you'll get signed in
-  * Remove root login w/ password
+  * Edit ssh config
     * `sudo nano /etc/ssh/sshd_config`
 * Edit these two entries in the config file.   
 	 * `PermitRootLogin no`
  	 * `PasswordAuthentication yes`
 * Add this entry at the bottom of the config file.
 	 * `AllowUsers reddcoin` 
+* Then restart the ssh service
 	 * `sudo service ssh restart`
 
 #### Compile reddcoind
