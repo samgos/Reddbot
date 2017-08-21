@@ -36,7 +36,7 @@ class Command
 
  def balance
     balance = client.getbalance(@user_id)
-    pricei = `ruby usdsingle.rb`
+    pricei = `ruby usd.rb`
     x = ((balance*pricei.to_f).round(3)).to_s
 
     @result[:text] = "@#{@user_name} #{@coin_config_module::BALANCE_REPLY_PRETEXT} #{balance}#{@coin_config_module::CURRENCY_ICON} ≈ $#{x} "
@@ -116,7 +116,7 @@ end
   end
 
   def randomize_amount
-    lower = [0.02, @params.shift.to_f].min
+    lower = [1, @params.shift.to_f].min
     upper = [@params.shift.to_f, available_balance].max
     @amount = rand(lower..upper)
     @result[:icon_emoji] = @coin_config_module::RANDOMIZED_EMOJI
