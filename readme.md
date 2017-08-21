@@ -15,15 +15,15 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
   * Size
     * Pick either w/ 2GB/2CPUs $20 a month or w/ 1GB/1CPUs $10 a month.
   * Region
-    * San Francisco 
+    * Amsterdam or whatever location is closest to you.
   * One-click Apps
     * Dokku 0.94 on 16.04
   * Add SSH keys
-    * Digital Ocean provide a easy-following tutorial for this that can be accessed once you click on add SSH key’s option, you’ll see a html link above the input console there a link for How to use SSH keys. 
+    * Digital Ocean provide a easy-following tutorial for this that can be accessed once you click on add SSH key’s option, you’ll see a html link above the ssh key input console for creating and using SSH keys. 
 
 #### Configure hostname
 
-* Copy/Paste IP address into URL bar
+* Copy/Paste IP address into URL bar after the droplet has installed fully to be faced with the Dokku setup.
   * Put in `hostname`
     * `example.com`
   * Check `Use virtualhost naming for apps
@@ -41,10 +41,11 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
   * Make the `hostname` be the name of your app
     * `reddbot`
   * Make the IP address be the one provided by digitalocean for your droplet.
-* After the DNS propogates
+* After the DNS propogates which may take 10/20 minutes.
   * In the `Zone file` of the DNS section of digital ocean you'll see:
     * `reddbot IN A	143.143.243.143`
-  * `ping reddbot.example.com`
+ * Go to a console/terminal on your Desktop and enter the following to command to see if the domain is live and connected to your droplet, you should see a response with your droplet's IP. 
+ * `ping reddbot.example.com`
     * `PING reddbot.example.com (143.143.243.143): 56 data bytes`
 
 #### SSH into your new virualized box
@@ -53,8 +54,12 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
   * If you correctly added your SSH keys you'll get signed in
   * Remove root login w/ password
     * `sudo nano /etc/ssh/sshd_config`
-      * `PermitRootLogin without-password`
+* Edit these two entries in the config file.   
+       * `PermitRootLogin no`
 	  * `PasswordAuthentication yes`
+* Add this entry at the bottom of the config file.
+	        * `AllowUsers reddcoin` 
+Restart the ssh  ->  * `sudo service ssh restart`
 
 #### Compile reddcoind
 
@@ -166,17 +171,18 @@ txindex=1`
 * `git clone https://github.com/samgos/reddbot`
 * `cd reddbot`
 
-* Install Ruby 2.2.2 and rvm
+* Install Ruby 2.4.0 and rvm
  * `sudo apt-get install libgdbm-dev libncurses5-dev automake libtool bison libffi-dev`
 * `gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3`
 * `curl -sSL https://get.rvm.io | bash -s stable`
-* `rvm install ruby-2.2.2`
-* `rvm use 2.2.2 --default`
+* `source /home/reddcoin/.rvm/scripts/rvm` 
+* `rvm install ruby-2.4.0`
+* `rvm use 2.4.0 --default`
 * `ruby -v`
 
 * Install bundler
 * `gem install bundler`
-* `sudo apt install ruby-bundler`
+* `bundle update`
 
 * To start using RVM you need to run `source rvm`
 * Run `bundle`
