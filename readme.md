@@ -94,24 +94,24 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
 	* Confirm that you actually did free some memory by comparing it to the first output of `free`
 
 * Compile reddcoind
-* `cd reddcoin`
-* `./autogen.sh`
+	* `cd reddcoin`
+	* `./autogen.sh`
 	
 * Build Berkeley DB 4.8
-* `BITCOIN_ROOT=$(pwd)`
+	* `BITCOIN_ROOT=$(pwd)`
 
 * Pick some path to install BDB to, here we create a directory within the reddcoin directory
-* `BDB_PREFIX="${BITCOIN_ROOT}/db4"`
-* `mkdir -p $BDB_PREFIX`
+	* `BDB_PREFIX="${BITCOIN_ROOT}/db4"`
+	* `mkdir -p $BDB_PREFIX`
 
 * Fetch the source and verify that it is not tampered with
-* `wget 'http://download.oracle.com/berkeley-db/db-4.8.30.NC.tar.gz'`
-* `echo '12edc0df75bf9abd7f82f821795bcee50f42cb2e5f76a6a281b85732798364ef  db-4.8.30.NC.tar.gz' | sha256sum -c`
+	* `wget 'http://download.oracle.com/berkeley-db/db-4.8.30.NC.tar.gz'`
+	* `echo '12edc0df75bf9abd7f82f821795bcee50f42cb2e5f76a6a281b85732798364ef  db-4.8.30.NC.tar.gz' | sha256sum -c`
 * Output should be: `db-4.8.30.NC.tar.gz: OK`
-* `tar -xzvf db-4.8.30.NC.tar.gz`
+	* `tar -xzvf db-4.8.30.NC.tar.gz`
 
 * Build the library and install to our prefix
-* `cd db-4.8.30.NC/build_unix/`
+	* `cd db-4.8.30.NC/build_unix/`
 
 * Note: Do a static build so that it can be embedded into the exectuable, instead of having to find a .so at runtime
 * `../dist/configure --enable-cxx --disable-shared --with-pic --prefix=$BDB_PREFIX`
@@ -141,7 +141,7 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
   * On the first run, reddcoin will return an error and tell you to make a configuration file, named reddcoin.conf, in order to add a username and password to the file.
  * `nano ~/.reddcoin/reddcoin.conf && chmod 0600 ~/.reddcoin/reddcoin.conf`
 * Add the following to your config file, changing the username and password
-    * to something secure. Make sure to take note of the `rpcuser` and * `rpcpassword` because you'll need them in a couple of steps
+    * to something secure. Make sure to take note of the `rpcuser` and `rpcpassword` because you'll need them in a couple of steps
 * `daemon = 1
 rpcuser=reddrpc
 rpcpassword=Z01BBDFKF
@@ -166,12 +166,12 @@ txindex=1`
 * `git clone https://github.com/samgos/reddbot`
 * `cd reddbot`
 
-* Install Ruby 2.1.1 and rvm
+* Install Ruby 2.2.2 and rvm
  * `sudo apt-get install libgdbm-dev libncurses5-dev automake libtool bison libffi-dev`
 * `gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3`
 * `curl -sSL https://get.rvm.io | bash -s stable`
-* `rvm install ruby-2.1.1`
-* `rvm use 2.1.1 --default`
+* `rvm install ruby-2.2.2`
+* `rvm use 2.2.2 --default`
 * `ruby -v`
 
 * Install bundler
