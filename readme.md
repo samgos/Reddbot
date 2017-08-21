@@ -23,8 +23,8 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
 
 #### Configure hostname
 
-* Copy/Paste IP address into URL bar after the droplet has installed fully to be faced with the Dokku setup.
-  * Put in `hostname`
+* Copy/Paste IP address into URL bar after the droplet has installed which might take 5/10 minutes, to be faced with the Dokku setup.
+  * Put in `hostname` for whatever domain you are using. 
     * `example.com`
   * Check `Use virtualhost naming for apps
     * `http://<app-name>.example.com`
@@ -43,7 +43,7 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
   * Make the IP address be the one provided by digitalocean for your droplet.
 * After the DNS propogates which may take 10/20 minutes.
   * In the `Zone file` of the DNS section of digital ocean you'll see:
-    * `reddbot IN A	143.143.243.143`
+    * `reddbot IN A 143.143.243.143`
  * Go to a console/terminal on your Desktop and enter the following to command to see if the domain is live and connected to your droplet, you should see a response with your droplet's IP. 
  * `ping reddbot.example.com`
     * `PING reddbot.example.com (143.143.243.143): 56 data bytes`
@@ -54,8 +54,7 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
   * If you correctly added your SSH keys you'll get signed in
   * Edit ssh config
     * `sudo nano /etc/ssh/sshd_config`
-* Edit these two entries in the config file.   
-	 * `PermitRootLogin no`
+* Edit this entry in the config file.   
  	 * `PasswordAuthentication yes`
 * Add this entry at the bottom of the config file.
 	 * `AllowUsers reddcoin` 
@@ -70,8 +69,9 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
 * Install Dependencies 
 * ` wget https://launchpad.net/ubuntu/+archive/primary/+files/miniupnpc_1.9.20140610.orig.tar.gz` 
  * `tar xzvf miniupnpc_1.9.20140610.orig.tar.gz`
-  * `make && make install`
-
+  * `cd miniupnpc-1.9.20140610`
+   * `make && make install`
+      * `cd`
  	* `sudo apt-get install build-essential`
 	* `sudo apt-get install libtool autotools-dev autoconf`
 	* `sudo apt-get install libssl-dev`
@@ -92,11 +92,13 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
 	* `sudo apt-get install libprotobuf-dev`
 	* `sudo apt-get update && sudo apt-get install pkg-config`
 
+	
+
 * Note if you are using a 10$ Droplet with 1GB ram you will need accommodate for more memory usage.
 	* `free`
 	* `dd if=/dev/zero of=/var/swap.img bs=1024k count=1000`
 	* `mkswap /var/swap.img`
-	* `wapon /var/swap.img`
+	* `swapon /var/swap.img`
 	* Confirm that you actually did free some memory by comparing it to the first output of `free`
 
 * Compile reddcoind
@@ -120,17 +122,17 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
 	* `cd db-4.8.30.NC/build_unix/`
 
 * Note: Do a static build so that it can be embedded into the exectuable, instead of having to find a .so at runtime
-* `../dist/configure --enable-cxx --disable-shared --with-pic --prefix=$BDB_PREFIX`
-* `make install`
+	* `../dist/configure --enable-cxx --disable-shared --with-pic --prefix=$BDB_PREFIX`
+	* `make install`
 
 * Configure Reddcoin Core to use our own-built instance of BDB	
-* `cd $BITCOIN_ROOT`
-* `./configure LDFLAGS="-L${BDB_PREFIX}/lib/" CPPFLAGS="-I${BDB_PREFIX}/include/"`
-* `make` - This will take some time, let it do it’s thing. 
-* `make install`
-* `cd ` 
-* `cd /usr/local/bin`
-* `strip reddcoind`
+	* `cd $BITCOIN_ROOT`
+	* `./configure LDFLAGS="-L${BDB_PREFIX}/lib/" CPPFLAGS="-I${BDB_PREFIX}/include/"`
+	* `make` - This will take some time, let it do it’s thing. 
+	* `make install`
+	* `cd ` 
+	* `cd /usr/local/bin`
+	* `strip reddcoind`
 
 * Add a user and move reddcoind
   *  Ubuntu has a password error when attempting to switch back to root from your new user so make sure to re-enter or make a new
