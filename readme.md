@@ -55,11 +55,11 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
   * Remove root login w/ password
     * `sudo nano /etc/ssh/sshd_config`
 * Edit these two entries in the config file.   
-       * `PermitRootLogin no`
-	  * `PasswordAuthentication yes`
+	 * `PermitRootLogin no`
+ 	 * `PasswordAuthentication yes`
 * Add this entry at the bottom of the config file.
-	        * `AllowUsers reddcoin` 
-Restart the ssh  ->  * `sudo service ssh restart`
+	 * `AllowUsers reddcoin` 
+	 * `sudo service ssh restart`
 
 #### Compile reddcoind
 
