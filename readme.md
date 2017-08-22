@@ -265,7 +265,10 @@ Setup each of them here -> https://yoursite.slack.com/customize/emoji
 * `reddcoin` -> https://ibb.co/cNFFU5
 
 
-![Alt text](https://preview.ibb.co/cEdihQ/Screen_Shot_2017_08_22_at_04_47_49.png "Preview")
+
+### Example
+![Alt text](https://image.ibb.co/bKUdGk/Screen_Shot_2017_08_22_at_04_56_13.png "Preview")
+
 
 
 
