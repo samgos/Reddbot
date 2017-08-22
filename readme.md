@@ -65,24 +65,23 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
   * `cd miniupnpc-1.9.20140610`
    * `make && make install`
       * `cd`
- 	* `sudo apt-get -y install chromium-browser`
-	* `sudo apt-get install build-essential`
-	* `sudo apt-get install libtool autotools-dev autoconf`
-	* `sudo apt-get install libssl-dev`
-	* `sudo apt-get install libboost-all-dev`
+	* `sudo apt-get -y install build-essential`
+	* `sudo apt-get -y install libtool autotools-dev autoconf`
+	* `sudo apt-get -y install libssl-dev`
+	* `sudo apt-get -y install libboost-all-dev`
 	* `sudo add-apt-repository ppa:bitcoin/bitcoin`
 	* `sudo apt-get update`
-	* `sudo apt-get install libdb4.8`
-	* `sudo apt-get install libdb4.8-dev`
-	* `sudo apt-get install libdb4.8++-dev`
-	* `sudo apt-get install libminiupnpc-dev`
-	* `sudo apt-get install libqt4-dev libprotobuf-dev protobuf-compiler`
-	* `sudo apt-get install libqrencode-dev`
-	* `sudo apt-get install libqt5gui5`
-	* `sudo apt-get install qttools5-dev`
-	* `sudo apt-get install qttools5-dev-tools`
-	* `sudo apt-get install libprotobuf-dev`
-	* `sudo apt-get update && sudo apt-get install pkg-config`
+	* `sudo apt-get -y install libdb4.8`
+	* `sudo apt-get -y nstall libdb4.8-dev`
+	* `sudo apt-get -y install libdb4.8++-dev`
+	* `sudo apt-get -y install libminiupnpc-dev`
+	* `sudo apt-get -y install libqt4-dev libprotobuf-dev protobuf-compiler`
+	* `sudo apt-get -y install libqrencode-dev`
+	* `sudo apt-get -y install libqt5gui5`
+	* `sudo apt-get -y install qttools5-dev`
+	* `sudo apt-get -y install qttools5-dev-tools`
+	* `sudo apt-get -y install libprotobuf-dev`
+	* `sudo apt-get update && sudo apt-get -y install pkg-config`
 
 	
 
