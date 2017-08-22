@@ -68,8 +68,8 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
 	* `sudo apt-get -y install build-essential`
 	* `sudo apt-get -y install libtool autotools-dev autoconf`
 	* `sudo apt-get -y install libssl-dev`
-	* `sudo apt-get -y install libboost-all-dev`
 	* `sudo add-apt-repository ppa:bitcoin/bitcoin`
+	* `sudo apt-get -y install libboost-all-dev`
 	* `sudo apt-get update`
 	* `sudo apt-get -y install libdb4.8`
 	* `sudo apt-get -y install libdb4.8-dev`
