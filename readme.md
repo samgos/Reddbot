@@ -52,14 +52,7 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
 
 * `ssh -o "IdentitiesOnly yes" -i ~/location/id_rsa root@droplet-ip` or `ssh root@droplet-ip`
   * If you correctly added your SSH keys you'll get signed in
-  * Edit ssh config
-    * `sudo nano /etc/ssh/sshd_config`
-* Edit this entry in the config file.   
- 	 * `PasswordAuthentication yes`
-* Add this entry at the bottom of the config file.
-	 * `AllowUsers reddcoin` 
-* Then restart the ssh service
-	 * `sudo service ssh restart`
+
 
 #### Compile reddcoind
 
@@ -86,8 +79,6 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
 	* `sudo apt-get install libqt4-dev libprotobuf-dev protobuf-compiler`
 	* `sudo apt-get install libqrencode-dev`
 	* `sudo apt-get install libqt5gui5`
-	* `sudo apt-get install libqt5core5a`
-	* `sudo apt-get install libqt5dbus5`
 	* `sudo apt-get install qttools5-dev`
 	* `sudo apt-get install qttools5-dev-tools`
 	* `sudo apt-get install libprotobuf-dev`
