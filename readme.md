@@ -264,6 +264,8 @@ Setup each of them here -> https://yoursite.slack.com/customize/emoji
 * `reddbank` -> https://ibb.co/eJpaU5
 * `reddcoin` -> https://ibb.co/cNFFU5
 ### Usage
+Note: Tip 10 times before initating the leaderboard command. 
+
 say any of the reddbot commands for example `reddbot hi` , `reddbot tip @username 100` , `reddbot deposit` use the command `reddbot help` to find out more.
 
 ## Security
