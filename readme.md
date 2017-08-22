@@ -263,6 +263,13 @@ Setup each of them here -> https://yoursite.slack.com/customize/emoji
 * `bitcoin` -> https://ibb.co/dRkSbk
 * `reddbank` -> https://ibb.co/eJpaU5
 * `reddcoin` -> https://ibb.co/cNFFU5
+
+
+
+![alt text](https://ibb.co/kLjOhQ)
+
+
+
 ### Usage
 Note: Tip 10 times before initating the leaderboard command. 
 
