@@ -69,7 +69,6 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
 	* `sudo apt-get -y install libtool autotools-dev autoconf`
 	* `sudo apt-get -y install libssl-dev`
 	* `sudo add-apt-repository ppa:bitcoin/bitcoin`
-	* `sudo apt-get -y install libboost-all-dev`
 	* `sudo apt-get update`
 	* `sudo apt-get -y install libdb4.8`
 	* `sudo apt-get -y install libdb4.8-dev`
@@ -118,6 +117,7 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
 
 * Configure Reddcoin Core to use our own-built instance of BDB	
 	* `cd $BITCOIN_ROOT`
+	* `sudo apt-get -y install libboost-all-dev`
 	* `./configure LDFLAGS="-L${BDB_PREFIX}/lib/" CPPFLAGS="-I${BDB_PREFIX}/include/"`
 	* `make` - This will take some time, let it do it’s thing. 
 	* `make install`
@@ -128,19 +128,20 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
 * Add a user and move reddcoind
   *  Ubuntu has a password error when attempting to switch back to root from your new user so make sure to re-enter or make a new
   password for sudo `sudo passwd root`
-* `adduser reddcoin && usermod -g users reddcoin && usermod -aG sudo reddcoin && delgroup reddcoin && chmod 0701 /home/reddcoin`
-* `mkdir /home/reddcoin/bin`
-* `cp ~/reddcoin/src/reddcoind /home/reddcoin/bin/reddcoin`
-* `chown -R reddcoin:users /home/reddcoin/bin`
-* `cd && rm -rf reddcoin`
+	* `adduser reddcoin && usermod -g users reddcoin && usermod -aG sudo reddcoin && delgroup reddcoin && chmod 0701 /home/reddcoin`
+	* `mkdir /home/reddcoin/bin`
+	* `cp ~/reddcoin/src/reddcoind /home/reddcoin/bin/reddcoin`
+	* `chown -R reddcoin:users /home/reddcoin/bin`
+	* `cd && rm -rf reddcoin`
 
 * Run the daemon
  * `su reddcoin`
  * `cd && bin/reddcoin`    
   * On the first run, reddcoin will return an error and tell you to make a configuration file, named reddcoin.conf, in order to add a username and password to the file.
- * `nano ~/.reddcoin/reddcoin.conf && chmod 0600 ~/.reddcoin/reddcoin.conf`
+	 * `nano ~/.reddcoin/reddcoin.conf && chmod 0600 ~/.reddcoin/reddcoin.conf`
 * Add the following to your config file, changing the username and password
-    * to something secure. Make sure to take note of the `rpcuser` and `rpcpassword` because you'll need them in a couple of steps
+ 	   * to something secure. Make sure to take note of the `rpcuser` and `rpcpassword` because you'll need them in a couple of steps
+	   
 * `daemon = 1
 rpcuser=reddrpc
 rpcpassword=Z01BBDFKF
@@ -148,7 +149,6 @@ rpcthreads=300
 rpcallowip=droplet_ip
 listen=1
 txindex=1`
-
 
   * Run the daemon again
     * `cd && bin/reddcoin` 
@@ -167,9 +167,9 @@ txindex=1`
 
 * Install Ruby 2.4.0 and rvm
  * `sudo apt-get install libgdbm-dev libncurses5-dev automake libtool bison libffi-dev`
-* `gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3`
-* `curl -sSL https://get.rvm.io | bash -s stable`
-* `source /home/reddcoin/.rvm/scripts/rvm` 
+	* `gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3`
+	* `curl -sSL https://get.rvm.io | bash -s stable`
+	* `source /home/reddcoin/.rvm/scripts/rvm` 
 * `rvm install ruby-2.4.0`
 * `rvm use 2.4.0 --default`
 * `ruby -v`
