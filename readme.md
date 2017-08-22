@@ -54,7 +54,7 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
   * If you correctly added your SSH keys you'll get signed in
 
 #### Warning 
-* To allow port open on 4567 and 45543 the firewall needs to be disabled will update with port-forwarding method, if you can do this yourself great if not wait or continue at your own risk. 
+* To allow port open on 4567 and 45543 the firewall needs to be disabled, will update with port-forwarding method ASAP. If you can do this yourself great, if not wait or continue at your own risk. 
 * use command `sudo ufw disable`
 
 
