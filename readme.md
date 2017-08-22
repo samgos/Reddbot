@@ -72,7 +72,8 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
   * `cd miniupnpc-1.9.20140610`
    * `make && make install`
       * `cd`
- 	* `sudo apt-get install build-essential`
+ 	* `sudo apt-get -y install chromium-browser`
+	* `sudo apt-get install build-essential`
 	* `sudo apt-get install libtool autotools-dev autoconf`
 	* `sudo apt-get install libssl-dev`
 	* `sudo apt-get install libboost-all-dev`
