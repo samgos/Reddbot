@@ -163,6 +163,7 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
 
 #### Clone the Reddbot Bot git repo
 
+*` cd`
 * `git clone https://github.com/samgos/reddbot`
 * `cd reddbot`
 
@@ -214,9 +215,10 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
 
 ## Security
 
-This runs an unencrypted hot wallet on your server. You should not store significant amounts of cryptocoins in this wallet. Withdraw your tips to an offline wallet often. 
+This wallet is unecrypted please go to extra efforts to secure the system from attacks, aka encrypting the reddcoin core wallet and SSL encryption improvement. 
 
 ## Credits
-
+Using the [Reddcoin Core v2.0] library by [Reddcoin Core Developers] (https://github.com/reddcoin-project/reddcoin) but also incoperating some of the build instructions to the tutorial. 
+Which was then forked from [coin-agnostic tipbot] (https://github.com/blocktech/slack_tipbot) by [cgcardona] (https://github.com/cgcardona) along with aspects of the tutorial.
 This project was originally forked from [dogetip-slack](https://github.com/tenforwardconsulting/dogetip-slack) by [tenforwardconsulting](https://github.com/tenforwardconsulting)
 
