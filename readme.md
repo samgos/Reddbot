@@ -273,7 +273,7 @@ Setup each of them here -> https://yoursite.slack.com/customize/emoji
 
 
 ### Usage
-Note: Tip 10 times before initating the leaderboard command. 
+Note: Tip over 10 times before initating the leaderboard command. 
 
 say any of the reddbot commands for example `reddbot hi` , `reddbot tip @username 100` , `reddbot deposit` use the command `reddbot help` to find out more.
 
