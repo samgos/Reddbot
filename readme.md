@@ -188,7 +188,7 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
 * `sudo apt-get install html-xml-utils`
 
 * Install node.js and slack-sdk client.
-* `sudo apt install nodejs-legacy && sudo apt install npm && git clone https://github.com/slackapi/node-slack-sdk`
+* `sudo apt install -y nodejs-legacy && sudo apt install -y npm && git clone https://github.com/slackapi/node-slack-sdk`
 * `cd node-slack-sdk `
 * `npm install @slack/client --save && npm install --save-dev capture-console`
 * `cd`
