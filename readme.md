@@ -197,9 +197,9 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
 * Install node.js and slack-sdk client.
 * `sudo apt install -y nodejs-legacy && sudo apt install -y npm && git clone https://github.com/slackapi/node-slack-sdk`
 * `cd node-slack-sdk `
-* `npm install forever`
-* `npm install @slack/client --save`
-* `npm install --save-dev capture-console`
+* `sudo npm install -g forever`
+* `sudo npm install -g @slack/client --save`
+* `sudo npm install -g --save-dev capture-console`
 * `cd`
 * `cd reddbot`
 
