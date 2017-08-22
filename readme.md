@@ -72,7 +72,7 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
 	* `sudo add-apt-repository ppa:bitcoin/bitcoin`
 	* `sudo apt-get update`
 	* `sudo apt-get -y install libdb4.8`
-	* `sudo apt-get -y nstall libdb4.8-dev`
+	* `sudo apt-get -y install libdb4.8-dev`
 	* `sudo apt-get -y install libdb4.8++-dev`
 	* `sudo apt-get -y install libminiupnpc-dev`
 	* `sudo apt-get -y install libqt4-dev libprotobuf-dev protobuf-compiler`
