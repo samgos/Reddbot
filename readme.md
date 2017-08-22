@@ -261,7 +261,7 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
 There is three emoji's included , `reddbank` , `reddcoin` and `bitcoin` 
 Setup each of them here -> https://yoursite.slack.com/customize/emoji
 * `bitcoin` -> https://ibb.co/dRkSbk
-* `reddbank` -> 
+* `reddbank` -> https://ibb.co/eJpaU5
 * `reddcoin` -> https://ibb.co/cNFFU5
 ### Usage
 say any of the reddbot commands for example `reddbot hi` , `reddbot tip @username 100` , `reddbot deposit` use the command `reddbot help` to find out more.
@@ -271,6 +271,8 @@ say any of the reddbot commands for example `reddbot hi` , `reddbot tip @usernam
 This wallet is unecrypted please go to extra efforts to secure the system from attacks, aka encrypting the reddcoin core wallet and SSL encryption improvement. 
 
 ## Credits
+Thanks to one of the reddcoin community members making the reddbank gif.
+
 Using the [Reddcoin Core v2.0](https://github.com/reddcoin-project/reddcoin)  library by the Reddcoin Core Developers but also incoperating some of the build instructions to the tutorial. 
 
 Which was then forked from [coin-agnostic tipbot](https://github.com/blocktech/slack_tipbot) by [cgcardona](https://github.com/cgcardona) along with aspects of the tutorial.
