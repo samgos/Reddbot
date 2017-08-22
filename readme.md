@@ -165,7 +165,7 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
 
 #### Clone the Reddbot Bot git repo
 
-*` cd`
+* `cd`
 * `git clone https://github.com/samgos/reddbot`
 * `cd reddbot`
 
@@ -189,6 +189,11 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
 * `chmod +x disp.sh`
 * `sudo apt-get install html-xml-utils`
 
+* Enter droplet IP in the `bitcoin_client_extensions.rb` file where it says `Host IP` 
+* ` nano bitcoin_client_extensions.rb`
+* `        { host: 'Host IP', port: 45443, ssl: false} )`
+*    Ctrl + X + Enter to save.
+
 * Install node.js and slack-sdk client.
 * `sudo apt install -y nodejs-legacy && sudo apt install -y npm && git clone https://github.com/slackapi/node-slack-sdk`
 * `cd node-slack-sdk `
@@ -198,13 +203,15 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
 * `cd`
 * `cd reddbot`
 
+
 #### Setup node.js client. 
 * https://api.slack.com/custom-integrations/legacy-tokens
 * Request a legacy token for your slack channel and copy it to the clipboard. 
-* Paste this value in the leaderboard.js file and message.js file in the following positon where the value `API_KEY` is.
+* Paste this value in the `leaderboard.js` file and `message.js` file in the following positon where the value `API_KEY` is.
 * `var token = process.env.SLACK_API_TOKEN || 'API_KEY' ; `
 * `nano leaderboard.js` -> Ctrl + X + Enter to save.
 * `nano message.js` -> Ctrl + X + Enter to save.
+
 
 #### Set up the Slack integration: as an "outgoing webhook" 
 
@@ -223,6 +230,9 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
 * `su reddcoin`
 * `RPC_USER=reddrpc RPC_PASSWORD=your_pass SLACK_API_TOKEN=your_api_key COIN=reddcoin bundle exec ruby tipper.rb -p 4567`
 *  Ctrl/Cmd + A + D to detach from the screen. 
+
+### Usage
+say any of the reddbot commands for example `reddbot hi` , `reddbot tip @username 100` , `reddbot deposit` use the command `reddbot help` to find out more.
 
 ## Security
 
