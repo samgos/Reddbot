@@ -15,7 +15,7 @@ rtm.on(RTM_EVENTS.MESSAGE, function handleRtmMessage(message) {
 
 web.search.messages('Give a little to get a little, they do say? from:reddbot',
         {
-count: '350',
+count: '10',
         },
 function(err, res) {
   if (err) {
@@ -30,7 +30,7 @@ var score = []
 var board = []
 var freq = []
 var tip_top = []
-for (var i = 0; i < 350 ; i++)                                          {
+for (var i = 0; i < 10 ; i++)                                          {
 var str = res.messages.matches[i].text;
 var stdout = capcon.captureStdout(function scope() {
 for (var x = 46 ; x < 55 ; x++) {
