@@ -145,8 +145,7 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
  * `cd && bin/reddcoin`    
   * On the first run, reddcoin will return an error and tell you to make a configuration file, named reddcoin.conf, in order to add a username and password to the file.
 	 * `nano ~/.reddcoin/reddcoin.conf && chmod 0600 ~/.reddcoin/reddcoin.conf`
-* Add the following to your config file, changing the username and password
- 	   * to something secure. Make sure to take note of the `rpcuser` and `rpcpassword` because you'll need them in a couple of steps
+* Add the following to your config file, changing the username and password to something secure. Make sure to take note of the `rpcuser` and `rpcpassword` because you'll need them in a couple of steps
 	   
 * daemon = 1
 * rpcuser=reddrpc
