@@ -150,6 +150,8 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
 * listen=1
 * txindex=1
 
+* To exit nano editor use Ctrl + X + Enter to save.
+
   * Run the daemon again
     * `cd && bin/reddcoin` 
   * To confirm that the daemon is running
@@ -191,10 +193,18 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
 * `sudo apt install -y nodejs-legacy && sudo apt install -y npm && git clone https://github.com/slackapi/node-slack-sdk`
 * `cd node-slack-sdk `
 * `npm install forever`
-*` npm install @slack/client --save`
-*` npm install --save-dev capture-console`
+* `npm install @slack/client --save`
+* `npm install --save-dev capture-console`
 * `cd`
 * `cd reddbot`
+
+#### Setup node.js client. 
+* https://api.slack.com/custom-integrations/legacy-tokens
+* Request a legacy token for your slack channel and copy it to the clipboard. 
+* Paste this value in the leaderboard.js file and message.js file in the following positon where the value `API_KEY` is.
+* `var token = process.env.SLACK_API_TOKEN || 'API_KEY' ; `
+* `nano leaderboard.js` -> Ctrl + X + Enter to save.
+* `nano message.js` -> Ctrl + X + Enter to save.
 
 #### Set up the Slack integration: as an "outgoing webhook" 
 
@@ -202,7 +212,6 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
 * Write down the api token they show you in this page
 * Set the trigger word, use `reddbot`
 * Set the Url to the server you'll be deploying on http://example.com:4567/tip
-
 
 #### Launch the server!
 
