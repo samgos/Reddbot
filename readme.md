@@ -53,6 +53,12 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
 * `ssh -o "IdentitiesOnly yes" -i ~/location/id_rsa root@droplet-ip` or `ssh root@droplet-ip`
   * If you correctly added your SSH keys you'll get signed in
 
+#### Warning 
+* To allow port open on 4567 and 45543 the firewall needs to be disabled will update with port-forwarding method, if you can do this yourself great if not wait or continue at your own risk. 
+* use command `sudo ufw disable`
+
+
+
 
 #### Compile reddcoind
 
@@ -161,7 +167,12 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
     * `wget https://github.com/reddcoin-project/reddcoin/releases/download/v2.0.0.0/bootstrap.dat.xz`
     * `unxz bootstrap.dat.xz`
 
-## Let the blockchain sync which may take up to around 10-15 hours.
+
+
+## Let the blockchain sync which may take up to around 10-15 hours. (You can still progress but balances won't update until synced)
+
+
+
 
 #### Clone the Reddbot Bot git repo
 
@@ -181,6 +192,7 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
 * Install bundler
 * `gem install bundler`
 * `bundle update`
+* `sudo apt install ruby-bundler`
 
 * To start using RVM you need to run `source rvm`
 * Run `bundle`
@@ -194,6 +206,9 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
 * `        { host: 'Host IP', port: 45443, ssl: false} )`
 *    Ctrl + X + Enter to save.
 
+
+
+
 * Install node.js and slack-sdk client.
 * `sudo apt install -y nodejs-legacy && sudo apt install -y npm && git clone https://github.com/slackapi/node-slack-sdk`
 * `cd node-slack-sdk `
@@ -202,6 +217,9 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
 * `sudo npm install -g --save-dev capture-console`
 * `cd`
 * `cd reddbot`
+
+
+
 
 
 #### Setup node.js client. 
@@ -213,6 +231,9 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
 * `nano message.js` -> Ctrl + X + Enter to save.
 
 
+
+
+
 #### Set up the Slack integration: as an "outgoing webhook" 
 
 * https://yoursite.slack.com/services/new/outgoing-webhook
@@ -220,8 +241,13 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
 * Set the trigger word, use `reddbot`
 * Set the Url to the server you'll be deploying on http://example.com:4567/tip
 
-#### Launch the server!
 
+
+
+
+#### Launch the server!
+* `source rvm`
+* `bundle`
 * `forever start message.js`
 * `forever start leaderboard.js`
 * If you want to keep the servering running use can use the unbuntu screen command
@@ -231,6 +257,12 @@ We're using [digitalocean.com](https://digitalocean.com) so these instructions w
 * `RPC_USER=reddrpc RPC_PASSWORD=your_pass SLACK_API_TOKEN=your_api_key COIN=reddcoin bundle exec ruby tipper.rb -p 4567`
 *  Ctrl/Cmd + A + D to detach from the screen. 
 
+### Emoji setup
+There is three emoji's included , `reddbank` , `reddcoin` and `bitcoin` 
+Setup each of them here -> https://yoursite.slack.com/customize/emoji
+* `bitcoin` -> https://ibb.co/dRkSbk
+* `reddbank` -> 
+* `reddcoin` -> https://ibb.co/cNFFU5
 ### Usage
 say any of the reddbot commands for example `reddbot hi` , `reddbot tip @username 100` , `reddbot deposit` use the command `reddbot help` to find out more.
 
