@@ -187,8 +187,8 @@ txindex=1`
 
 * Install node.js and slack-sdk client.
 * `sudo apt install nodejs-legacy && sudo apt install npm && git clone https://github.com/slackapi/node-slack-sdk`
-* `cd node-slack-sdk && npm install @slack/client --save && npm install --save-dev capture-console `
-
+* `cd node-slack-sdk `
+*` npm install @slack/client --save && npm install --save-dev capture-console`
 
 #### Set up the Slack integration: as an "outgoing webhook" 
 
@@ -200,8 +200,14 @@ txindex=1`
 
 #### Launch the server!
 
+*`forever start message.js`
+*`forever start leaderboard.js`
+* If you want to keep the servering running use can use the unbuntu screen command
+* Enter your sudo password you made or re-entered earlier -> `su`
+* `screen`
+* `su reddcoin`
 * `RPC_USER=reddrpc RPC_PASSWORD=your_pass SLACK_API_TOKEN=your_api_key COIN=reddcoin bundle exec ruby tipper.rb -p 4567`
-  
+*  Ctrl/Cmd + A + D to detach from the screen. 
 
 ## Security
 
