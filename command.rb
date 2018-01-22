@@ -18,8 +18,7 @@ class Command
     @user_id = slack_params['user_id']
     @action = @params.shift
     @result = {}
-    @price = `ruby fiat.rb `
-    @sh = `./disp.sh`
+    @price = `ruby price.rb `
     end
 
  def perform
@@ -134,8 +133,7 @@ end
   end
 
  def price
-        @result[:text] = "#{@coin_config_module::PRICE_PRE}#{@sh} BTC :bitcoin:"
-        @result[:text] += " ≈ #{@price}"
+        @result[:text] = "#{@coin_config_module::PRICE_PRE}  #{@price}"
 end
 
 
